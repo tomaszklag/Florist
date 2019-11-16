@@ -9,7 +9,7 @@ namespace Florist.Infrastructure.Cqrs
 {
     public static class Extensions
     {
-        public static dynamic Resolve(this IServiceProvider provider, Type classType)
+        internal static dynamic Resolve(this IServiceProvider provider, Type classType)
         {
             var assembly = Assembly.GetExecutingAssembly();
 
