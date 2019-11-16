@@ -11,13 +11,16 @@ import { RouterModule } from '@angular/router';
 import { SidenavModule } from './core/modules/sidenav/sidenav.module';
 import { HeaderModule } from './core/modules/header/header.module';
 import { AppState } from './store/app.state';
+import { environment } from 'src/environments/environment.prod';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    NgxsModule.forRoot([AppState, ProductsState]),
+    NgxsModule.forRoot([AppState, ProductsState], {
+      developmentMode: !environment.production
+    }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     BrowserModule,
     RouterModule,

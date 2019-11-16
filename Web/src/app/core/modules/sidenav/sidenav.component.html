@@ -1,0 +1,37 @@
+<mat-sidenav-container class="example-container" autosize fullscreen>
+  <mat-sidenav #sidenav mode="side" opened="true">
+    <mat-nav-list>
+      <mat-list-item>
+        <mat-icon mat-list-icon>account_circle</mat-icon>
+        <h4 mat-line *ngIf="isExpanded | async">Profil</h4>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>show_chart</mat-icon>
+        <h4 mat-line *ngIf="isExpanded | async">Raporty</h4>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>shopping_basket</mat-icon>
+        <h4 mat-line *ngIf="isExpanded | async">Artykuły</h4>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon routerLink="home/product-manager">storefront</mat-icon>
+        <h4 mat-line *ngIf="isExpanded | async">Magazyn</h4>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>folder_shared</mat-icon>
+        <h4 mat-line *ngIf="isExpanded | async">Pracownicy</h4>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>supervisor_account</mat-icon>
+        <h4 mat-line *ngIf="isExpanded | async">Klienci</h4>
+      </mat-list-item>
+      <mat-list-item class="buttom">
+        <mat-icon mat-list-icon>settings</mat-icon>
+        <h4 mat-line *ngIf="isExpanded | async">Ustawienia</h4>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

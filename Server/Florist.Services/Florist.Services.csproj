@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Florist.Core\Florist.Core.csproj" />
+    <ProjectReference Include="..\Florist.Infrastructure\Florist.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
