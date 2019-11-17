@@ -1,5 +1,6 @@
 using Florist.Infrastructure.Cqrs;
 using Florist.Infrastructure.Data;
+using Florist.Infrastructure.Mvc;
 using Florist.Infrastructure.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,9 +13,10 @@ namespace Florist.Api
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddCustomMvc();
             services.AddMssql();
             services.AddCqrs();
+            services.AddErrorHandlerMiddleware();
             //services.AddSwagger();
 
             services.RegisterAllRepositories();
@@ -34,6 +36,7 @@ namespace Florist.Api
             {
                 endpoints.MapDefaultControllerRoute();
             });
+            app.UseErrorHandler();
         }
     }
 }
