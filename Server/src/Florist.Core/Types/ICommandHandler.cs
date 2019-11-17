@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Florist.Infrastructure.Cqrs.Types
+namespace Florist.Core.Types
 {
     public interface ICommandHandler<in T> where T : ICommand
     {

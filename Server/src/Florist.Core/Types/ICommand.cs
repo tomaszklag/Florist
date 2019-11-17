@@ -1,4 +1,4 @@
-﻿namespace Florist.Infrastructure.Cqrs.Types
+﻿namespace Florist.Core.Types
 {
     public interface ICommand
     {
