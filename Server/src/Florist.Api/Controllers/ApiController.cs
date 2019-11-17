@@ -5,7 +5,7 @@ namespace Florist.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    internal abstract class ApiController : ControllerBase
+    public abstract class ApiController : ControllerBase
     {
         protected readonly IDispatcher _dispatcher;
 

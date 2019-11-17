@@ -22,7 +22,7 @@ namespace Florist.Infrastructure.Cqrs
             return null;
         }
 
-        public static IServiceCollection RegisterCqrs(this IServiceCollection services)
+        public static IServiceCollection AddCqrs(this IServiceCollection services)
         {
             services.AddScoped<IDispatcher, Dispatcher>();
             services.AddScoped<ICommandDispatcher, CommandDispatcher>();

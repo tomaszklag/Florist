@@ -1,4 +1,5 @@
 using Florist.Infrastructure.Cqrs;
+using Florist.Infrastructure.Data;
 using Florist.Infrastructure.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,8 +15,11 @@ namespace Florist.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.RegisterCqrs();
-            services.RegisterSwagger();
+            services.AddMssql();
+            services.AddCqrs();
+            //services.AddSwagger();
+
+            services.RegisterAllRepositories();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -26,12 +30,13 @@ namespace Florist.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.BuildDatabase();
+            //app.UseSwagger();
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
             });
-            app.UseSwagger();
         }
     }
 }
