@@ -1,4 +1,5 @@
 using Florist.Infrastructure.Cqrs;
+using Florist.Infrastructure.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +15,7 @@ namespace Florist.Api
         {
             services.AddControllers();
             services.RegisterCqrs();
+            services.RegisterSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -25,11 +27,11 @@ namespace Florist.Api
             }
 
             app.UseRouting();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
             });
+            app.UseSwagger();
         }
     }
 }
