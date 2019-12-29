@@ -1,9 +1,9 @@
 ﻿using Florist.Core.Types;
 using System.Threading.Tasks;
 
-namespace Florist.Infrastructure.Cqrs.Dispatchers
+namespace Florist.Services.Dispatchers
 {
-    public interface IQueryDispatcher
+    public interface IQueryBus
     {
         Task<TResult> QueryAsync<TResult>(IQuery<TResult> query);
     }

@@ -1,4 +1,4 @@
-﻿using Florist.Infrastructure.Cqrs.Dispatchers;
+﻿using Florist.Services.Dispatchers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Florist.Api.Controllers

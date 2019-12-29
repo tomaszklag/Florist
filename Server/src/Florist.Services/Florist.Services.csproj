@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Florist.Core\Florist.Core.csproj" />
     <ProjectReference Include="..\Florist.Infrastructure\Florist.Infrastructure.csproj" />
   </ItemGroup>
 

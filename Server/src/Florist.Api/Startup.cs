@@ -1,7 +1,6 @@
-using Florist.Infrastructure.Cqrs;
 using Florist.Infrastructure.Data;
 using Florist.Infrastructure.Mvc;
-using Florist.Infrastructure.Swagger;
+using Florist.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,8 +14,8 @@ namespace Florist.Api
         {
             services.AddCustomMvc();
             services.AddMssql();
-            services.AddCqrs();
             services.AddErrorHandlerMiddleware();
+            services.RegisterApplicationServices();
             //services.AddSwagger();
 
             services.RegisterAllRepositories();
