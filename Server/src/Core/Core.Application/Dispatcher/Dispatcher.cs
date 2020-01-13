@@ -23,7 +23,7 @@ namespace Core.Application.Dispatcher
         //public async Task<TResult> QueryAsync<TResult>(IQuery<TResult> query)
         //    => await _queryBus.QueryAsync(query);
 
-        public async Task PublishAsync<TEvent>(TEvent @event) where TEvent : CommandEvent<IEvent>
+        public async Task PublishAsync<TEvent>(TEvent @event) where TEvent : IEvent
             => await _eventBus.PublishAsync(@event);
     }
 }

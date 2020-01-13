@@ -15,7 +15,7 @@ namespace Core.Application.Command
 
         public async Task SendAsync<T>(T command) where T : ICommand
         {
-            ICommandHandler<T> handler = _handlerActivator.CreateCommandHandler(command);
+            ICommandHandler<T> handler = _handlerActivator.ResolveCommandHandler(command);
 
             if (handler is null)
             {

@@ -8,6 +8,7 @@ namespace Test.Application.Commands.CreateTest
         public CreateTestCommand(string name)
         {
             Name = name;
+            Id = Guid.NewGuid();
         }
 
         public Guid Id { get; }

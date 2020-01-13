@@ -1,0 +1,8 @@
+@url = https://localhost:5001
+
+### Test POST 
+{{url}}/test 
+Content-Type: application/json
+
+{
+}
