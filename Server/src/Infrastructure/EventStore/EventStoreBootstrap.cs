@@ -21,8 +21,8 @@ namespace Florist.Infrastructure.EventStore
                 database.CreateCollection(esConfig.EventLogCollectionName);
 
             services.AddSingleton(database);
-            services.AddTransient<IRepository, EventStoreRepository>();
             services.AddScoped<IUnitOfWork, EventStoreUnitOfWork>();
+            services.AddTransient<IRepository, EventStoreRepository>();
         }
 
         private static EventStoreConfiguration GetESConfiguration(IServiceCollection services)

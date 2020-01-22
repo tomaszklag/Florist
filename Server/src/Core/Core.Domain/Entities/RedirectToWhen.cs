@@ -21,6 +21,7 @@ namespace Core.Domain.Entities
         public static void InvokeEvent<T>(T instance, IEvent @event)
         {
             var eventType = @event.GetType();
+            var genericCache = typeof(Cache<>).MakeGenericType(instance.GetType()).GetField("Store");
             if (!Cache<T>.Store.TryGetValue(eventType, out var whenMethodInfo))
                 throw new InvalidOperationException($"Failed to locate method: {typeof(T).Name}.When({eventType.Name})");
 

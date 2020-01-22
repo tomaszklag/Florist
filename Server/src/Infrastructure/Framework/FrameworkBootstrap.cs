@@ -10,7 +10,7 @@ namespace Florist.Infrastructure.Mvc
     public static class FrameworkBootstrap
     {
         public static void ConfigureAppilcationServices(this IServiceCollection services)
-            => services.AddTransient<IHandlerActivator, HandlerActivator>()
+            => services.AddSingleton<IHandlerActivator, HandlerActivator>()
                        .AddTransient<ICommandBus, CommandBus>()
                        .AddTransient<IEventBus, EventBus>()
                        .AddTransient<IDispatcher, Dispatcher>();
