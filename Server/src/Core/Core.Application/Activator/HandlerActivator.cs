@@ -26,7 +26,20 @@ namespace Core.Application.Activators
                 : null;
 
         public IEnumerable<IEventHandler<T>> ResolveEventHandlers<T>(T @event) where T : IEvent
-            => ResolveAll(typeof(IEventHandler<T>)) as IEnumerable<IEventHandler<T>>;
+        {
+            var resolvedInstances = new List<IEventHandler<T>>();
+
+            if (HandlerContainers.EventHandlersResolver.TryGetValue(typeof(T), out var handlers))
+            {
+                foreach (var handler in handlers)
+                {
+                    var handlerInstance = ActivatorUtilities.CreateInstance(_provider.CreateScope().ServiceProvider, handler.AsType()) as IEventHandler<T>;
+                    resolvedInstances.Add(handlerInstance);
+                }
+            }
+            
+            return resolvedInstances;
+        }
 
         private IEnumerable<dynamic> ResolveAll(Type requestedType)
         {
