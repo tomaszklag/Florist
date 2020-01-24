@@ -1,3 +1,4 @@
+using Florist.Infrastructure.EventStore;
 using Florist.Infrastructure.Mvc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,13 +11,10 @@ namespace Florist.Api
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCustomMvc();
-            services.AddMssql();
-            services.AddErrorHandlerMiddleware();
-            services.RegisterApplicationServices();
-            //services.AddSwagger();
-
-            services.RegisterAllRepositories();
+            services.AddControllers();
+            services.ConfigureAppilcationServices();
+            services.ConfigureEventStore();
+            services.ConfigureErrorHandlerMiddleware();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -26,8 +24,6 @@ namespace Florist.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.BuildDatabase();
-            //app.UseSwagger();
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {

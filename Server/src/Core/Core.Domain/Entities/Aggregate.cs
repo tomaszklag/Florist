@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Core.Domain.Entities
 {
-    public abstract class Aggregate : IAggregate
+    public abstract class Aggregate<TEntity>: IAggregate
     {
         public Guid Id { get; protected set; }
         public int Version { get; protected set; }
@@ -35,7 +35,7 @@ namespace Core.Domain.Entities
         private void Apply(IEvent @event)
         {
             Version++;
-            RedirectToWhen.InvokeEvent(this, @event);
+            RedirectToWhen.InvokeEvent<Aggregate<TEntity>, TEntity>(this, @event);
         }
     }
 }

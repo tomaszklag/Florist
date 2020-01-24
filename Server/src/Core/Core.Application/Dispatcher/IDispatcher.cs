@@ -8,6 +8,6 @@ namespace Core.Application.Dispatcher
     {
         Task SendAsync<TCommand>(TCommand command) where TCommand : ICommand;
         //Task<TResult> QueryAsync<TResult>(IQuery<TResult> query);
-        Task PublishAsync<TEvent>(TEvent @event) where TEvent : CommandEvent<IEvent>;
+        Task PublishAsync<TEvent>(TEvent @event) where TEvent : IEvent;
     }
 }

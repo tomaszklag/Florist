@@ -10,24 +10,28 @@ namespace Florist.Infrastructure.EventStore.Persistence
 {
     public class EventStoreUnitOfWork : IUnitOfWork
     {
-        private readonly ConcurrentDictionary<string, ConcurrentQueue<IEvent>> _transactions;
         private readonly IMongoDatabase _eventStoreContext;
-        private IClientSessionHandle _mongoDbSession;
+        private static IClientSessionHandle _mongoDbSession;
+        private static ConcurrentDictionary<string, ConcurrentQueue<IEvent>> _transactions;
 
         public EventStoreUnitOfWork(IMongoDatabase eventStoreContext)
         {
-            _transactions = new ConcurrentDictionary<string, ConcurrentQueue<IEvent>>();
             _eventStoreContext = eventStoreContext;
         }
 
         public IEnumerable<IEvent> GetEvents(string stream)
         {
+            if (_transactions is null) return new List<IEvent>();
+
             _transactions.TryGetValue(stream, out var eventTransaction);
             return eventTransaction?.ToList() ?? new List<IEvent>();
         }
 
         public void SaveChanges(string stream, IEnumerable<IEvent> events)
         {
+            if (_transactions is null)
+                _transactions = new ConcurrentDictionary<string, ConcurrentQueue<IEvent>>();
+
             if (_transactions.TryGetValue(stream, out var transaction))
                 events?.ToList().ForEach(e => transaction.Enqueue(e));
             else

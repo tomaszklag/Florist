@@ -21,7 +21,7 @@ namespace Florist.Api.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IActionResult> RequestAsync(ICommand command)
+        public async Task<IActionResult> RequestAsync<T>(T command) where T: ICommand
         {
             try
             {

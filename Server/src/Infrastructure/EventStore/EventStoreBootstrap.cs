@@ -1,5 +1,6 @@
 ﻿using Core.Domain.Entities;
 using Florist.Infrastructure.EventStore.Configurations;
+using Florist.Infrastructure.EventStore.Models;
 using Florist.Infrastructure.EventStore.Persistence;
 using Florist.Infrastructure.Persistence.EventStore;
 using Microsoft.Extensions.Configuration;
@@ -16,11 +17,12 @@ namespace Florist.Infrastructure.EventStore
             var client = new MongoClient(esConfig.ConnectionString);
             var database = client.GetDatabase(esConfig.DatabaseName);
 
-            database.CreateCollection("EventLog");
+            if (database.GetCollection<EventData>(esConfig.EventLogCollectionName) == null)
+                database.CreateCollection(esConfig.EventLogCollectionName);
 
             services.AddSingleton(database);
-            services.AddTransient<IRepository, EventStoreRepository>();
             services.AddScoped<IUnitOfWork, EventStoreUnitOfWork>();
+            services.AddTransient<IRepository, EventStoreRepository>();
         }
 
         private static EventStoreConfiguration GetESConfiguration(IServiceCollection services)

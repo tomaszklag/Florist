@@ -1,0 +1,8 @@
+@url = https://localhost:5001
+
+### Test 
+POST https://localhost:5001/test 
+Content-Type: application/json
+
+{
+}

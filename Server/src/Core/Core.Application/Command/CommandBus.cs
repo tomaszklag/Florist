@@ -15,11 +15,10 @@ namespace Core.Application.Command
 
         public async Task SendAsync<T>(T command) where T : ICommand
         {
-            ICommandHandler<T> handler = _handlerActivator.CreateCommandHandler(command);
-
+            var handler = _handlerActivator.ResolveCommandHandler(command);
             if (handler is null)
             {
-                throw new ArgumentException($"Command handler: '{typeof(T).Name} was not found.'",
+                throw new ArgumentException($"Command handler: '{command.GetType().Name} was not found.'",
                     nameof(handler));
             }
 

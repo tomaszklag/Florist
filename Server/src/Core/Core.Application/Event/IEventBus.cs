@@ -6,6 +6,6 @@ namespace Core.Application.Event
 {
     public interface IEventBus
     {
-        Task PublishAsync<TEvent>(TEvent @event) where TEvent : CommandEvent<IEvent>;
+        Task PublishAsync<TEvent>(TEvent @event) where TEvent : IEvent;
     }
 }

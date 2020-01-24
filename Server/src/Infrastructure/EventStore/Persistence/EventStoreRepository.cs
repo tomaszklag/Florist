@@ -15,17 +15,14 @@ namespace Florist.Infrastructure.Persistence.EventStore
     public class EventStoreRepository : IRepository
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IEventActivator _eventActivator;
         private readonly IDispatcher _dispatcher;
         private readonly IMongoDatabase _eventStoreContext;
 
         public EventStoreRepository(IUnitOfWork unitOfWork,
-                                    IEventActivator eventActivator,
                                     IDispatcher dispatcher,
                                     IMongoDatabase eventStoreContext)
         {
             _unitOfWork = unitOfWork;
-            _eventActivator = eventActivator;
             _dispatcher = dispatcher;
             _eventStoreContext = eventStoreContext;
         }
@@ -91,8 +88,7 @@ namespace Florist.Infrastructure.Persistence.EventStore
         {
             foreach (var @event in events)
             {
-                var commandEvent = _eventActivator.CreateCommandEvent(@event);
-                await _dispatcher.PublishAsync(commandEvent);
+                await _dispatcher.PublishAsync(@event);
             }
         }
     }
