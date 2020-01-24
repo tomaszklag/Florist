@@ -4,7 +4,7 @@ using Test.Domain.Events;
 
 namespace Test.Domain
 {
-    public class TestItem : Aggregate
+    public class TestItem : Aggregate<TestItem>
     {
         public string Name { get; private set; }
 

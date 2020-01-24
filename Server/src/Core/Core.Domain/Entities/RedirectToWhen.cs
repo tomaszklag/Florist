@@ -14,15 +14,17 @@ namespace Core.Domain.Entities
                 .GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
                 .Where(m => m.Name == "When")
                 .Where(m => m.GetParameters().Length == 1 && 
-                            m.GetParameters().First().ParameterType == typeof(IEvent))
+                            m.GetParameters()
+                             .First().ParameterType
+                             .GetInterfaces()
+                             .Contains(typeof(IEvent)))
                 .ToDictionary(m => m.GetParameters().First().ParameterType, m => m);
         }
 
-        public static void InvokeEvent<T>(T instance, IEvent @event)
+        public static void InvokeEvent<T, TEntity>(T instance, IEvent @event)
         {
             var eventType = @event.GetType();
-            var genericCache = typeof(Cache<>).MakeGenericType(instance.GetType()).GetField("Store");
-            if (!Cache<T>.Store.TryGetValue(eventType, out var whenMethodInfo))
+            if (!Cache<TEntity>.Store.TryGetValue(eventType, out var whenMethodInfo))
                 throw new InvalidOperationException($"Failed to locate method: {typeof(T).Name}.When({eventType.Name})");
 
             whenMethodInfo.Invoke(instance, new[] { @event });

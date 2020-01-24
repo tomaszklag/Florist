@@ -7,7 +7,7 @@ namespace Core.Application.Activators
 {
     public interface IHandlerActivator
     {
-        dynamic ResolveCommandHandler<T>(T command) where T : ICommand;
+        ICommandHandler<T> ResolveCommandHandler<T>(T command) where T : ICommand;
 
         IEnumerable<IEventHandler<T>> ResolveEventHandlers<T>(T @event) where T : IEvent;
     }

@@ -13,7 +13,6 @@ namespace Core.Application.Activators
 {
     public class HandlerActivator : IHandlerActivator
     {
-        private readonly ConcurrentDictionary<Type, dynamic> _commandHandlers = new ConcurrentDictionary<Type, dynamic>();
         private readonly IServiceProvider _provider;
 
         public HandlerActivator(IServiceProvider provider)
@@ -21,12 +20,10 @@ namespace Core.Application.Activators
             _provider = provider;
         }
 
-        public dynamic ResolveCommandHandler<T>(T command) where T : ICommand
-            => _commandHandlers.GetOrAdd(command.GetType(), x =>
-            {
-                var generic = typeof(ICommandHandler<>).MakeGenericType(command.GetType());
-                return _provider.CreateScope().ServiceProvider.ResolveFirstOrDefault(generic);
-            });
+        public ICommandHandler<T> ResolveCommandHandler<T>(T command) where T : ICommand
+            => HandlerContainers.CommandHandlerResolver.TryGetValue(typeof(T), out var handler) 
+                ? ActivatorUtilities.CreateInstance(_provider.CreateScope().ServiceProvider, handler.AsType()) as ICommandHandler<T> 
+                : null;
 
         public IEnumerable<IEventHandler<T>> ResolveEventHandlers<T>(T @event) where T : IEvent
             => ResolveAll(typeof(IEventHandler<T>)) as IEnumerable<IEventHandler<T>>;
