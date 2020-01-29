@@ -1,4 +1,4 @@
-﻿namespace Florist.Infrastructure.EventStore.Models
+﻿namespace Core.Infrastructure.EventStore.Models
 {
     public class EventData
     {

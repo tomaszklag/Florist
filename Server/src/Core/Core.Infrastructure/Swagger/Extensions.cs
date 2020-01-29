@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.IO;
-using System.Reflection;
-
-namespace Florist.Infrastructure.Swagger
+﻿namespace Core.Infrastructure.Swagger
 {
     public static class Extensions
     {

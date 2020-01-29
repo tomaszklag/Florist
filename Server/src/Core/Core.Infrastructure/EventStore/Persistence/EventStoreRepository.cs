@@ -1,8 +1,6 @@
-﻿using Core.Application.Activators;
-using Core.Application.Dispatcher;
-using Core.Domain.Entities;
+﻿using Core.Domain.Entities;
 using Core.Domain.Events;
-using Florist.Infrastructure.EventStore;
+using Core.Infrastructure.EventStore;
 using Florist.Infrastructure.EventStore.Models;
 using MongoDB.Driver;
 using System;
@@ -10,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Florist.Infrastructure.Persistence.EventStore
+namespace Core.Infrastructure.Persistence.EventStore
 {
     public class EventStoreRepository : IRepository
     {

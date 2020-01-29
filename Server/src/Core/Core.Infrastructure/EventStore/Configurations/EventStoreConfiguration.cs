@@ -1,4 +1,4 @@
-﻿namespace Florist.Infrastructure.EventStore.Configurations
+﻿namespace Core.Infrastructure.EventStore.Configurations
 {
     public class EventStoreConfiguration
     {

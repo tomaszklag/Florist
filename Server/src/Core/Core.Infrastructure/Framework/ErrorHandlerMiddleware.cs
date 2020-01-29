@@ -4,7 +4,7 @@ using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Florist.Infrastructure.Mvc
+namespace Core.Infrastructure.Mvc
 {
     internal class ErrorHandlerMiddleware : IMiddleware
     {

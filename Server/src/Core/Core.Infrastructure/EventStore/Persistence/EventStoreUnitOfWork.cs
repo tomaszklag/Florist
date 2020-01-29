@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Florist.Infrastructure.EventStore.Persistence
+namespace Core.Infrastructure.EventStore.Persistence
 {
     public class EventStoreUnitOfWork : IUnitOfWork
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Florist.Infrastructure.EventStore
+namespace Core.Infrastructure.EventStore
 {
     public interface IUnitOfWork
     {

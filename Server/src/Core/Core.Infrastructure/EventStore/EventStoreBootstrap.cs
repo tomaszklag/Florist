@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 
-namespace Florist.Infrastructure.EventStore
+namespace Core.Infrastructure.EventStore
 {
     public static class EventStoreBootstrap
     {

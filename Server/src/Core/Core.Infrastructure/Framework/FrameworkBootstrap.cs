@@ -5,7 +5,7 @@ using Core.Application.Event;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Florist.Infrastructure.Mvc
+namespace Core.Infrastructure.Mvc
 {
     public static class FrameworkBootstrap
     {

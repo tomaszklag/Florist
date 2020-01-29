@@ -4,7 +4,7 @@ using System;
 using System.Text;
 using System.Text.Json;
 
-namespace Florist.Infrastructure.EventStore
+namespace Core.Infrastructure.EventStore
 {
     public static class Extensions
     {
